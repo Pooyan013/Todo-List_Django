@@ -7,6 +7,7 @@
 {% for task in tasks %}
 <h2>{{task}}</h2>
 <a href="{% url 'update' task.id %}">Update</a>
+<a href="{% url 'delete' task.id %}">Delete</a>
 <h3>is completed? - {{task.completed}}</h3>
 <h4>{{task.created_at}}</h4>
 {% endfor %}
