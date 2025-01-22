@@ -19,7 +19,6 @@ This is a basic Task Management application developed with Django. It allows use
 - `views.py`: Handles the logic for task creation, update, and deletion.
 - `templates/`: HTML files for displaying and interacting with tasks.
 
-## Installation
 
 1. Clone this repository:
 
