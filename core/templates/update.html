@@ -1,11 +1,117 @@
-<h1>Update </h1>
-<form action="/" method="post">
-    {% csrf_token %}
-    {{ TaskForm }}
-    <input type="submit" class="btn" name="Update">
-</form>
-{% for task in tasks %}
-<h2>{{task}}</h2>
-<h3>is completed? - {{task.completed}}</h3>
-<h4>{{task.created_at}}</h4>
-{% endfor %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        form {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .btn {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #219a52;
+        }
+
+        .task-display {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .task-display h2 {
+            color: #2c3e50;
+            margin: 0 0 15px 0;
+        }
+
+        .task-display h3 {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin: 10px 0;
+        }
+
+        .task-display h4 {
+            color: #95a5a6;
+            font-size: 0.8em;
+            margin: 5px 0;
+        }
+
+        .completed-true {
+            color: #27ae60;
+        }
+
+        .completed-false {
+            color: #e74c3c;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Update Task</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ TaskForm.as_p }}
+        <input type="submit" class="btn" value="Update Task">
+    </form>
+
+    {% if tasks %}
+    {% for task in tasks %}
+    <div class="task-display">
+        <h2>{{task}}</h2>
+        <h3>Status: <span class="completed-{% if task.completed %}true{% else %}false{% endif %}">
+                {% if task.completed %}Completed{% else %}Pending{% endif %}
+            </span></h3>
+        <h4>Created: {{task.created_at}}</h4>
+    </div>
+    {% endfor %}
+    {% endif %}
+</body>
+
+</html>
